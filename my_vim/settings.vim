@@ -1,0 +1,87 @@
+colorscheme seoul256
+
+set undofile
+
+"set shell=/bin/zsh
+
+set backspace=indent,eol,start
+
+set tabstop=2
+set shiftwidth=2
+set expandtab
+
+let mapleader=","
+let g:mapleader=","
+
+map <Leader>h :noh <CR>
+
+nmap <F1> <Esc>
+
+set number
+set numberwidth=4
+
+syntax on
+
+set ruler
+
+set cindent
+set smartindent
+set smartcase
+set autoindent
+
+set hlsearch
+set incsearch   " do incremental searching
+set ignorecase
+"
+" " Switch wrap off for everything
+set nowrap
+"
+set showcmd   " display incomplete commands
+"
+" " Always display the status line
+set laststatus=2
+
+set dir=~/.vim/swp
+"
+" " нужно для работы макросов
+filetype plugin indent on
+"
+" " Keep more content at the bottom of the buffer
+set scrolloff=5
+"
+" " Highlight cursor line
+set cursorline
+"
+set history=1000
+"
+" " Thorfile, Rakefile, Vagrantfile and Gemfile are Ruby
+" au BufRead,BufNewFile {Gemfile,Rakefile,Vagrantfile,Thorfile,config.ru} set
+" ft=ruby
+" au BufRead,BufNewFile {*.html.slim} set ft=slim
+" au BufRead,BufNewFile {*.skim} set ft=slim
+"
+" "
+" " " md, markdown, and mk are markdown and define buffer-local preview
+" au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn} set ft=markdown
+" "
+" " " add json syntax highlighting
+" au BufNewFile,BufRead *.json set ft=javascript
+"
+" " highlight ExtraWhitespace ctermbg=red guibg=red
+" " match ExtraWhitespace /\s\+$/
+" " autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+" " autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+" " autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+" " autocmd BufWinLeave * call clearmatches()
+"
+runtime macros/matchit.vim
+"
+set wildmenu
+set wcm=<Tab>
+"
+" if has("gui_running")
+  set guifont=Monaco:h15
+  set background=light
+" endif
+
+set tags=./tags;
