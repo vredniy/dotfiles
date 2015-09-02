@@ -1,8 +1,12 @@
-colorscheme seoul256
+" colorscheme materialtheme
+" colorscheme gotham
+colorscheme seoul256-light
+
 
 set undofile
 
-"set shell=/bin/zsh
+" set shell=zsh\ -i
+set shell=/bin/zsh
 
 set backspace=indent,eol,start
 
@@ -16,6 +20,20 @@ let g:mapleader=","
 map <Leader>h :noh <CR>
 
 nmap <F1> <Esc>
+
+nnoremap <Down> gj
+nnoremap <Up> gk
+vnoremap <Down> gj
+vnoremap <Up> gk
+
+
+" permanent very magick mode
+nnoremap / /\v
+vnoremap / /\v
+cnoremap %s/ %smagic/
+cnoremap \>s/ \>smagic/
+" nnoremap :g/ :g/\v
+" nnoremap :g// :g//
 
 set number
 set numberwidth=4
@@ -79,9 +97,11 @@ runtime macros/matchit.vim
 set wildmenu
 set wcm=<Tab>
 "
-" if has("gui_running")
-  set guifont=Monaco:h15
+if has("gui_running")
+  " set guifont=Monaco:h15
+  " set guifont=PT\ Mono:h15
+  set guifont=Hack:h15
   set background=light
-" endif
+endif
 
 set tags=./tags;

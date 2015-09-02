@@ -21,4 +21,12 @@ for f in split(glob('~/.my_vim/plugins/*.vim'), '\n')
   " end
 endfor
 
+nmap <leader>s :call <SID>SynStack()<CR>
+function! <SID>SynStack()
+   if !exists("*synstack")
+      return
+   endif
+   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc
+
 " vmap <Enter> <Plug>(EasyAlign)

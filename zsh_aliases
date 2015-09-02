@@ -1,0 +1,31 @@
+alias m="mvim ."
+
+alias r=rails
+alias be="bundle exec"
+#
+# alias speedtest='curl -o /dev/null http://speedtest.wdc01.softlayer.com/downloads/test10.zip'
+#
+# #alias generate_tags="ctags -R --languages=ruby --exclude=.git --exclude=log . $(bundle list --paths)"
+#
+alias so="source"
+#
+# # git
+alias gs="git status"
+alias gl="git log"
+alias ga="git add"
+alias gd="git diff"
+alias gco="git commit"
+alias gch="git checkout"
+alias grom="git rebase origin/master"
+alias gr="git rebase"
+alias gb="git branch"
+
+alias gpull="git pull --rebase origin master"
+#
+# # growl notify
+# alias gn="growlnotify -m done"
+#
+# alias grep='grep --color=auto'
+
+alias zshrc='$EDITOR ~/.zshrc'
+alias t='tail -f'

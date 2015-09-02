@@ -1,17 +1,38 @@
 " " Make sure you use single quotes
+
+" colorchemes
+" Plug 'whatyouhide/vim-gotham'
 Plug 'junegunn/seoul256.vim'
-"
+Plug 'altercation/vim-colors-solarized'
+" Plug 'Wutzara/vim-materialtheme'
+
 " " Plugin outside ~/.vim/plugged with post-update hook
 " Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
 "
-" " Plug 'vim-ruby/vim-ruby'
-" Plug 'sheerun/vim-polyglot'
+" Plug 'vim-ruby/vim-ruby'
+Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-rails'
+
 Plug 'vim-scripts/tComment'
 Plug 'scrooloose/nerdtree'
 
+Plug 'MarcWeber/vim-addon-mw-utils'
+Plug 'tomtom/tlib_vim'
+Plug 'honza/vim-snippets'
+Plug 'garbas/vim-snipmate'
+
+Plug 'terryma/vim-multiple-cursors'
+
+" {{{ Ruby block as text object
+Plug 'kana/vim-textobj-user'
+Plug 'nelstrom/vim-textobj-rubyblock'
+" }}}
+
+Plug 'tpope/vim-fugitive'
+
 Plug 'rking/ag.vim'
 
+" Plug 'strogonoff/vim-coffee-script'
 
 Plug 'tpope/vim-surround'
 Plug 'ervandew/supertab'
@@ -33,32 +54,41 @@ Plug 'vim-scripts/Align'
 Plug 'vim-scripts/matchit.zip'
 " Plug 'terryma/vim-expand-region'
 
-Plug 'haya14busa/incsearch.vim'
+" Plug 'haya14busa/incsearch.vim'
 " Plug 'osyo-manga/vim-over'
 
-Plug 'Yggdroot/indentLine'
+" Plug 'Yggdroot/indentLine'
 
 " Plug 'tpope/vim-dispatch'
 
 Plug 'kien/ctrlp.vim'
 
-Plug 'justinmk/vim-dirvish'
-nnoremap <silent> - :Dirvish %:p:h<cr>
-let g:dirvish_hijack_netrw=0
+" Plug 'justinmk/vim-dirvish'
+
+" Plug 'szw/vim-tags'
+" Plug 'majutsushi/tagbar'
+
+" Plug 'Xuyuanp/nerdtree-git-plugin'
+
+
+" Experiments {{
+" Plug 'Shougo/vimshell.vim'
+" }}
 
 " Haskell
-Plug 'bitc/vim-hdevtools'
-Plug 'scrooloose/syntastic'
-Plug 'lukerandall/haskellmode-vim'
-Plug 'raichoo/haskell-vim'
-
-Plug 'eagletmt/neco-ghc'
-Plug 'Shougo/neocomplete.vim'
-setlocal omnifunc=necoghc#omnifunc
-let g:necoghc_enable_detailed_browse = 1
+" Plug 'bitc/vim-hdevtools'
+" Plug 'scrooloose/syntastic'
+" Plug 'lukerandall/haskellmode-vim'
+" Plug 'raichoo/haskell-vim'
+"
+" Plug 'eagletmt/neco-ghc'
+" Plug 'Shougo/neocomplete.vim'
+"
+" Plug 'Shougo/unite.vim'
+" Plug 'eagletmt/unite-haddock'
+"
+" Plug 'Shougo/vimproc.vim'
+" Plug 'eagletmt/ghcmod-vim'
 
 " let g:ycm_semantic_triggers = {'haskell' : ['.']}
 " let $PATH = $PATH . ':' . expand("~/.cabal/bin")
-
-Plug 'szw/vim-tags'
-" Plug 'majutsushi/tagbar'
