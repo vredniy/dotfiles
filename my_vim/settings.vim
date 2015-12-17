@@ -1,6 +1,13 @@
 " colorscheme materialtheme
 " colorscheme gotham
-colorscheme seoul256-light
+" colorscheme seoul256-light
+colorscheme gruvbox
+" colorscheme badwolf
+
+noremap <Up> <NOP>
+noremap <Down> <NOP>
+noremap <Left> <NOP>
+noremap <Right> <NOP>
 
 
 set undofile
@@ -21,17 +28,17 @@ map <Leader>h :noh <CR>
 
 nmap <F1> <Esc>
 
-nnoremap <Down> gj
-nnoremap <Up> gk
-vnoremap <Down> gj
-vnoremap <Up> gk
+" nnoremap <Down> gj
+" nnoremap <Up> gk
+" vnoremap <Down> gj
+" vnoremap <Up> gk
 
 
 " permanent very magick mode
-nnoremap / /\v
-vnoremap / /\v
-cnoremap %s/ %smagic/
-cnoremap \>s/ \>smagic/
+" nnoremap / /\v
+" vnoremap / /\v
+" cnoremap %s/ %smagic/
+" cnoremap \>s/ \>smagic/
 " nnoremap :g/ :g/\v
 " nnoremap :g// :g//
 
@@ -100,8 +107,10 @@ set wcm=<Tab>
 if has("gui_running")
   " set guifont=Monaco:h15
   " set guifont=PT\ Mono:h15
-  set guifont=Hack:h15
-  set background=light
+  set guifont=Hack:h14
+  " set guifont="Fantasque Sans Mono:h14"
+  " set guifont="FantasqueSansMono:h15"
+  set background=dark
 endif
 
 set tags=./tags;
