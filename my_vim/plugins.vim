@@ -1,10 +1,20 @@
 " " Make sure you use single quotes
 
-" colorchemes
+" colorchemes {{{
 " Plug 'whatyouhide/vim-gotham'
-Plug 'junegunn/seoul256.vim'
-Plug 'altercation/vim-colors-solarized'
+" Plug 'junegunn/seoul256.vim'
+" Plug 'altercation/vim-colors-solarized'
 " Plug 'Wutzara/vim-materialtheme'
+Plug 'morhetz/gruvbox'
+Plug 'sjl/badwolf'
+" }}}
+
+Plug 'justinmk/vim-sneak'
+
+" disable arrows and hjkl keys
+Plug 'wikitopian/hardmode'
+
+Plug 'airblade/vim-gitgutter'
 
 " " Plugin outside ~/.vim/plugged with post-update hook
 " Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
@@ -26,6 +36,7 @@ Plug 'terryma/vim-multiple-cursors'
 " {{{ Ruby block as text object
 Plug 'kana/vim-textobj-user'
 Plug 'nelstrom/vim-textobj-rubyblock'
+Plug 'ecomba/vim-ruby-refactoring'
 " }}}
 
 Plug 'tpope/vim-fugitive'
@@ -48,8 +59,9 @@ Plug 'bling/vim-airline'
 
 Plug 'bronson/vim-trailing-whitespace'
 
-" Plug 'junegunn/vim-easy-align'
+Plug 'junegunn/vim-easy-align'
 Plug 'vim-scripts/Align'
+Plug 'godlygeek/tabular'
 
 Plug 'vim-scripts/matchit.zip'
 " Plug 'terryma/vim-expand-region'
@@ -61,9 +73,12 @@ Plug 'vim-scripts/matchit.zip'
 
 " Plug 'tpope/vim-dispatch'
 
-Plug 'kien/ctrlp.vim'
+" Plug 'kien/ctrlp.vim'
+Plug 'ctrlpvim/ctrlp.vim' | Plug 'habamax/vim-ctrlp-colorscheme'
+Plug 'tacahiroy/ctrlp-funky'
+" Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
 
-" Plug 'justinmk/vim-dirvish'
+Plug 'justinmk/vim-dirvish'
 
 " Plug 'szw/vim-tags'
 " Plug 'majutsushi/tagbar'
