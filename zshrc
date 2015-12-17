@@ -56,11 +56,11 @@ ZSH_THEME="eastwood"
 # quick-look  quick Look a specified file
 # man-preview open a specified man page in Preview
 # trash move a specified file to the Trash
-plugins=(git brew git-extras osx)
+plugins=(git brew git-extras osx brew-cask tmux)
 
 # User configuration
 
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/.cabal/bin:$HOME/Library/Haskell/bin"
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
@@ -73,7 +73,7 @@ source ~/.zsh_aliases
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='vim'
 else
-  export EDITOR='mvim'
+  export EDITOR='vim'
 fi
 
 # If a new command line being added to the history list duplicates an older one,
