@@ -26,6 +26,11 @@ let g:mapleader=","
 
 map <Leader>h :noh <CR>
 
+" This will allow you to select a word within visual mode, then with the quick
+" double tap of / immediately search for the given word.
+" http://blog.salsify.com/engineering/using-vim-tmux-for-ruby-on-rails
+vnoremap // y/<C-R>"<CR>"
+
 nmap <F1> <Esc>
 
 " nnoremap <Down> gj
@@ -72,7 +77,7 @@ set dir=~/.vim/swp
 filetype plugin indent on
 "
 " " Keep more content at the bottom of the buffer
-set scrolloff=5
+set scrolloff=2
 "
 " " Highlight cursor line
 set cursorline
@@ -84,6 +89,7 @@ set history=1000
 " ft=ruby
 " au BufRead,BufNewFile {*.html.slim} set ft=slim
 " au BufRead,BufNewFile {*.skim} set ft=slim
+au BufRead,BufNewFile {*.es6} set ft=javascript
 "
 " "
 " " " md, markdown, and mk are markdown and define buffer-local preview

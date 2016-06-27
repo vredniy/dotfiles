@@ -16,11 +16,15 @@ Plug 'wikitopian/hardmode'
 
 Plug 'airblade/vim-gitgutter'
 
+Plug 'AndrewRadev/switch.vim'
+Plug 'valloric/MatchTagAlways'
+
 " " Plugin outside ~/.vim/plugged with post-update hook
 " Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
 "
 " Plug 'vim-ruby/vim-ruby'
 Plug 'sheerun/vim-polyglot'
+
 Plug 'tpope/vim-rails'
 
 Plug 'vim-scripts/tComment'
@@ -56,6 +60,7 @@ Plug 'Raimondi/delimitMate'
 " Plug 'airblade/vim-gitgutter'
 
 Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 
 Plug 'bronson/vim-trailing-whitespace'
 
@@ -74,7 +79,7 @@ Plug 'vim-scripts/matchit.zip'
 " Plug 'tpope/vim-dispatch'
 
 " Plug 'kien/ctrlp.vim'
-Plug 'ctrlpvim/ctrlp.vim' | Plug 'habamax/vim-ctrlp-colorscheme'
+Plug 'ctrlpvim/ctrlp.vim' "| Plug 'habamax/vim-ctrlp-colorscheme'
 Plug 'tacahiroy/ctrlp-funky'
 " Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
 
