@@ -1,3 +1,8 @@
+# -*- mode: gitignore; -*-
 *.un*
 .DS_Store
 .idea
+
+*~
+\#*\#
+.\#*
