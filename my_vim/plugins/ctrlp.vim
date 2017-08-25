@@ -22,9 +22,9 @@ let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_max_height = 25
 
 " mappings
-" nnoremap ,, :CtrlPMixed<cr>
-" nnoremap ,p :CtrlPMixed<cr>
-" nnoremap ,b :CtrlPBuffer<cr>
-" nnoremap ,t :CtrlPTag<cr>
-" nnoremap ,l :CtrlPLine<cr>
-" nnoremap ,f :CtrlPFunky<cr>
+nnoremap ,, :CtrlP<cr>
+nnoremap ,p :CtrlPMixed<cr>
+nnoremap ,b :CtrlPBuffer<cr>
+nnoremap ,t :CtrlPTag<cr>
+nnoremap ,l :CtrlPLine<cr>
+nnoremap ,f :CtrlPFunky<cr>

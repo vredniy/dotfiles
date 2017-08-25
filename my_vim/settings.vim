@@ -1,16 +1,29 @@
 " colorscheme materialtheme
 " colorscheme gotham
 " colorscheme seoul256-light
-colorscheme gruvbox
+colorscheme monokai
+set background=light
+" colorscheme wwdc17
+" colorscheme gruvbox
 " colorscheme badwolf
 
-noremap <Up> <NOP>
-noremap <Down> <NOP>
-noremap <Left> <NOP>
-noremap <Right> <NOP>
+" noremap <Up> <NOP>
+" noremap <Down> <NOP>
+" noremap <Left> <NOP>
+" noremap <Right> <NOP>
 
 
 set undofile
+set hidden
+
+set synmaxcol=200
+
+" set lazyredraw
+
+set splitbelow             " Open new windows below the current window.
+set splitright             " Open new windows right of the current window.
+
+let g:deoplete#enable_at_startup = 1
 
 " set shell=zsh\ -i
 set shell=/bin/zsh
@@ -24,7 +37,17 @@ set expandtab
 let mapleader=","
 let g:mapleader=","
 
-map <Leader>h :noh <CR>
+set clipboard=unnamed
+set mouse=a
+
+" TODO: make comfortable tab switch
+" gt or gT not so awesome
+
+" for neovim only
+" exit from terminal mode
+tnoremap <Esc> <C-\><C-n>
+
+map <Leader>h :noh<CR>
 
 " This will allow you to select a word within visual mode, then with the quick
 " double tap of / immediately search for the given word.
@@ -48,7 +71,7 @@ nmap <F1> <Esc>
 " nnoremap :g// :g//
 
 set number
-set numberwidth=4
+set numberwidth=3
 
 syntax on
 

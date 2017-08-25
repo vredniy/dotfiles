@@ -2,17 +2,28 @@
 
 " colorchemes {{{
 " Plug 'whatyouhide/vim-gotham'
-" Plug 'junegunn/seoul256.vim'
+Plug 'junegunn/seoul256.vim'
 " Plug 'altercation/vim-colors-solarized'
 " Plug 'Wutzara/vim-materialtheme'
 Plug 'morhetz/gruvbox'
 Plug 'sjl/badwolf'
+Plug 'sickill/vim-monokai'
+
+Plug 'lifepillar/vim-wwdc17-theme'
 " }}}
 
 Plug 'justinmk/vim-sneak'
 
+Plug 'maxbrunsfeld/vim-yankstack'
+Plug 'AndrewRadev/splitjoin.vim'
+
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'fishbullet/deoplete-ruby'
+
+Plug 'tpope/vim-unimpaired'
+
 " disable arrows and hjkl keys
-Plug 'wikitopian/hardmode'
+" Plug 'wikitopian/hardmode'
 
 Plug 'airblade/vim-gitgutter'
 

@@ -72,9 +72,9 @@ source ~/.zsh_aliases
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='vim'
+  export EDITOR='nvim'
 else
-  export EDITOR='vim'
+  export EDITOR='nvim'
 fi
 
 # If a new command line being added to the history list duplicates an older one,
