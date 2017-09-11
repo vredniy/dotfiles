@@ -27,8 +27,10 @@ Plug 'valloric/MatchTagAlways'
 " " Plugin outside ~/.vim/plugged with post-update hook
 " Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
 "
-" Plug 'vim-ruby/vim-ruby'
-Plug 'sheerun/vim-polyglot'
+Plug 'vim-ruby/vim-ruby'
+" Plug 'elixir-lang/vim-elixir'
+" Plug 'slashmili/alchemist.vim'
+" Plug 'sheerun/vim-polyglot'
 
 Plug 'tpope/vim-rails'
 
@@ -107,6 +109,7 @@ Plug 'justinmk/vim-dirvish'
 call plug#end()
 " Plugs }}}
 
+" Configuration {{{
 colorscheme monokai
 set background=light
 
@@ -116,6 +119,9 @@ noremap <Left> <NOP>
 noremap <Right> <NOP>
 
 set undofile
+set dir=~/.vim/swp//
+set undodir=~/.local/share/nvim/undo//
+set noswapfile
 set hidden
 
 set synmaxcol=200
@@ -242,6 +248,8 @@ if has("gui_running")
 endif
 
 " set tags=./tags;
+" Configuration }}}
+
 
 " Ag {{{
 if executable('ag')
@@ -356,3 +364,6 @@ vmap <Enter> <Plug>(EasyAlign)
 
 " let g:vim_tags_project_tags_command = "{CTAGS} -R {OPTIONS} {DIRECTORY} --exclude=.git --languages=ruby --exclude=log --exclude=node_modules --exclude=gulp --exclude=public/assets 2>/dev/null"
 " ctags -R --languages=ruby --exclude=.git --exclude=log . $(bundle list --paths) --exclude=log --exclude=node_modules --exclude=gulp --exclude=public/assets
+
+" foldmethod=marker
+" vim:ts=2:sw=2::foldlevel=0:
