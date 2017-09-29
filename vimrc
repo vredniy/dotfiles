@@ -65,7 +65,7 @@ Plug 'Raimondi/delimitMate'
 
 " Plug 'airblade/vim-gitgutter'
 
-Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
 Plug 'bronson/vim-trailing-whitespace'
@@ -96,6 +96,7 @@ Plug 'justinmk/vim-dirvish'
 
 " Plug 'Xuyuanp/nerdtree-git-plugin'
 
+Plug 'neomake/neomake'
 
 " Experiments {{
 " Plug 'Shougo/vimshell.vim'
@@ -106,12 +107,17 @@ Plug 'justinmk/vim-dirvish'
 "
 " Plug 'Shougo/unite.vim'
 
+" HINT: Delete buffers and close files in Vim without closing your windows
+Plug 'moll/vim-bbye'
+" HINT: try me if that plugin doesn't work (https://github.com/qpkorr/vim-bufkill)
+
 call plug#end()
 " Plugs }}}
 
 " Configuration {{{
 colorscheme monokai
-set background=light
+let g:airline_theme='aurora'
+" set background=light
 
 noremap <Up> <NOP>
 noremap <Down> <NOP>
@@ -159,6 +165,10 @@ if has("nvim")
 endif
 
 map <Leader>h :noh<CR>
+nnoremap <Leader>s :%s/\<<C-r><C-w>\>/
+
+" vim-bbye
+nnoremap <Leader>q :Bdelete<CR>
 
 " This will allow you to select a word within visual mode, then with the quick
 " double tap of / immediately search for the given word.
@@ -205,7 +215,7 @@ set dir=~/.vim/swp
 filetype plugin indent on
 "
 " " Keep more content at the bottom of the buffer
-set scrolloff=2
+set scrolloff=10
 "
 " " Highlight cursor line
 set cursorline
@@ -218,6 +228,8 @@ set history=1000
 " au BufRead,BufNewFile {*.html.slim} set ft=slim
 " au BufRead,BufNewFile {*.skim} set ft=slim
 au BufRead,BufNewFile {*.es6} set ft=javascript
+
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 "
 " "
 " " " md, markdown, and mk are markdown and define buffer-local preview
@@ -247,9 +259,17 @@ if has("gui_running")
   set background=dark
 endif
 
-" set tags=./tags;
+set tags=./tags;
 " Configuration }}}
 
+" Neomake {{{
+let g:neomake_ruby_enabled_makers=['mri', 'rubocop']
+autocmd FileType ruby autocmd! BufWritePost * Neomake
+" Neomake }}}
+
+" NERDTree {{{
+map ,n  :NERDTreeToggle<CR>
+" NERDTree }}}
 
 " Ag {{{
 if executable('ag')
@@ -324,20 +344,6 @@ let NERDTreeMinimalUI=1
 let NERDTreeDirArrows=1
 let NERDTreeBookmarksFile= $HOME . '/.vim/.NERDTreeBookmarks'
 " nerdtree }}}
-
-
-" syntastic
-" set statusline+=%#warningmsg#
-" set statusline+=%{SyntasticStatuslineFlag()}
-" set statusline+=%*
-"
-" let g:syntastic_always_populate_loc_list = 1
-" let g:syntastic_auto_loc_list = 1
-" let g:syntastic_check_on_open = 1
-" let g:syntastic_check_on_wq = 0
-"
-" let g:syntastic_html_checkers=['haskell']
-
 
 
 " airline {{{
