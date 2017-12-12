@@ -60,7 +60,7 @@ plugins=(git brew git-extras osx brew-cask tmux)
 
 # User configuration
 
-PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Applications/Postgres.app/Contents/Versions/9.6/bin"
 export PATH=$PATH:$(go env GOPATH)/bin
 # export MANPATH="/usr/local/man:$MANPATH"
 
