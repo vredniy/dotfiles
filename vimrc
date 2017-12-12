@@ -65,8 +65,9 @@ Plug 'Raimondi/delimitMate'
 
 " Plug 'airblade/vim-gitgutter'
 
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+" Plug 'vim-airline/vim-airline'
+" Plug 'vim-airline/vim-airline-themes'
+Plug 'itchyny/lightline.vim'
 
 Plug 'bronson/vim-trailing-whitespace'
 
@@ -75,6 +76,8 @@ Plug 'vim-scripts/Align'
 Plug 'godlygeek/tabular'
 
 Plug 'vim-scripts/matchit.zip'
+
+Plug 'tommcdo/vim-exchange'
 " Plug 'terryma/vim-expand-region'
 
 " Plug 'haya14busa/incsearch.vim'
@@ -91,19 +94,28 @@ Plug 'tacahiroy/ctrlp-funky'
 
 Plug 'justinmk/vim-dirvish'
 
-" Plug 'szw/vim-tags'
-" Plug 'majutsushi/tagbar'
+Plug 'szw/vim-tags'
+Plug 'majutsushi/tagbar'
 
 " Plug 'Xuyuanp/nerdtree-git-plugin'
 
 Plug 'neomake/neomake'
+Plug 'lyokha/vim-xkbswitch'
 
 " Experiments {{
-" Plug 'Shougo/vimshell.vim'
+Plug 'sjl/gundo.vim'
+
+Plug 'editorconfig/editorconfig-vim'
+
+Plug 'tpope/vim-bundler'
+
+Plug 'tpope/vim-endwise'
+
+Plug 't9md/vim-quickhl'
 " }}
 
+"
 " Plug 'eagletmt/neco-ghc'
-" Plug 'Shougo/neocomplete.vim'
 "
 " Plug 'Shougo/unite.vim'
 
@@ -114,9 +126,14 @@ Plug 'moll/vim-bbye'
 call plug#end()
 " Plugs }}}
 
+" xkbswitch {{{
+" HINT: https://github.com/myshov/libxkbswitch-macosx
+" let g:XkbSwitchLib = 'liblibxkbswitch.dylibck_after_paste/Users/zudochkin/Library/Developer/Xcode/DerivedData/libxkbswitch-aevoofumcqfjnbawtustqvdywzqh/Build/Products/Debug/liblibxkbswitch.dylib'
+let g:XkbSwitchEnabled = 1
+" }}}
+
 " Configuration {{{
 colorscheme monokai
-let g:airline_theme='aurora'
 " set background=light
 
 noremap <Up> <NOP>
@@ -230,6 +247,9 @@ set history=1000
 au BufRead,BufNewFile {*.es6} set ft=javascript
 
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+" enable folding for JSON files
+autocmd FileType json setlocal foldmethod=syntax
+autocmd FileType json normal zR
 "
 " "
 " " " md, markdown, and mk are markdown and define buffer-local preview
@@ -325,12 +345,6 @@ nnoremap ,f :CtrlPFunky<cr>
 
 " **************************************************
 
-" neocomplete {{{
-let g:neocomplete#enable_at_startup = 1
-let g:neocomplete#enable_smart_case = 1
-" neocomplete }}}
-
-
 " nerdtree {{{
 nmap <leader>l :NERDTreeToggle<CR>
 let NERDTreeShowBookmarks=1
@@ -347,12 +361,40 @@ let NERDTreeBookmarksFile= $HOME . '/.vim/.NERDTreeBookmarks'
 
 
 " airline {{{
-let g:airline_left_sep = '▶'
-let g:airline_right_sep = '◀'
-let g:airline_theme='powerlineish'
+" let g:airline_left_sep = '▶'
+" let g:airline_right_sep = '◀'
+" let g:airline_theme='powerlineish'
+" let g:airline_theme='aurora'
 " airline }}}
 
+" lightline {{{
+if !has('gui_running')
+  set t_Co=256
+endif
 
+let g:lightline = {
+      \ 'colorscheme': 'wombat',
+      \ }
+" lightline }}}
+
+
+" quickhl {{{
+nmap <Space>m <Plug>(quickhl-manual-this)
+xmap <Space>m <Plug>(quickhl-manual-this)
+
+nmap <Space>w <Plug>(quickhl-manual-this-whole-word)
+xmap <Space>w <Plug>(quickhl-manual-this-whole-word)
+
+nmap <Space>c <Plug>(quickhl-manual-clear)
+vmap <Space>c <Plug>(quickhl-manual-clear)
+
+nmap <Space>M <Plug>(quickhl-manual-reset)
+xmap <Space>M <Plug>(quickhl-manual-reset)
+
+nmap <Space>j <Plug>(quickhl-cword-toggle)
+nmap <Space>] <Plug>(quickhl-tag-toggle)
+map H <Plug>(operator-quickhl-manual-this-motion)
+" quickhl }}}
 
 " dirvish {{{
 nnoremap <silent> - :Dirvish %:p:h<cr>
