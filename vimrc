@@ -4,7 +4,9 @@ set nocompatible
 call plug#begin('~/.vim/plugged')
 
 " colorcheme
-Plug 'sickill/vim-monokai'
+" Plug 'sickill/vim-monokai'
+Plug 'morhetz/gruvbox'
+Plug 'freeo/vim-kalisi'
 
 Plug 'justinmk/vim-sneak'
 
@@ -112,6 +114,8 @@ Plug 'tpope/vim-bundler'
 Plug 'tpope/vim-endwise'
 
 Plug 't9md/vim-quickhl'
+
+Plug 'tpope/vim-unimpaired'
 " }}
 
 "
@@ -133,7 +137,8 @@ let g:XkbSwitchEnabled = 1
 " }}}
 
 " Configuration {{{
-colorscheme monokai
+" colorscheme monokai
+colorscheme gruvbox
 " set background=light
 
 noremap <Up> <NOP>
@@ -154,7 +159,7 @@ set lazyredraw
 set splitbelow             " Open new windows below the current window.
 set splitright             " Open new windows right of the current window.
 
-let g:deoplete#enable_at_startup = 1
+let g:deoplete#enable_at_startup = 0
 
 " set shell=zsh\ -i
 set shell=/bin/zsh
