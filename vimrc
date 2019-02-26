@@ -1,17 +1,18 @@
 set nocompatible
 
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
 " Plugs {{{
 call plug#begin('~/.vim/plugged')
 
 " colorcheme
-" Plug 'sickill/vim-monokai'
 Plug 'morhetz/gruvbox'
-Plug 'freeo/vim-kalisi'
-
-Plug 'justinmk/vim-sneak'
 
 Plug 'maxbrunsfeld/vim-yankstack'
-Plug 'AndrewRadev/splitjoin.vim'
 
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'fishbullet/deoplete-ruby'
@@ -30,116 +31,62 @@ Plug 'valloric/MatchTagAlways'
 " Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
 "
 Plug 'vim-ruby/vim-ruby'
-" Plug 'elixir-lang/vim-elixir'
-" Plug 'slashmili/alchemist.vim'
-" Plug 'sheerun/vim-polyglot'
-
 Plug 'tpope/vim-rails'
-
 Plug 'vim-scripts/tComment'
 Plug 'scrooloose/nerdtree'
-
 Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'tomtom/tlib_vim'
 Plug 'honza/vim-snippets'
 Plug 'garbas/vim-snipmate'
-
 Plug 'terryma/vim-multiple-cursors'
-
-" Ruby block as text object
-Plug 'kana/vim-textobj-user'
-Plug 'nelstrom/vim-textobj-rubyblock'
-Plug 'ecomba/vim-ruby-refactoring'
-
-Plug 'tpope/vim-fugitive'
-
 Plug 'rking/ag.vim'
-
-" Plug 'strogonoff/vim-coffee-script'
-
 Plug 'tpope/vim-surround'
 Plug 'ervandew/supertab'
-" Plug 'ajh17/VimCompletesMe'
-" Plug 'Valloric/YouCompleteMe'
-" let g:ycm_semantic_triggers = {'haskell' : ['.']}
-
 Plug 'Raimondi/delimitMate'
-
-" Plug 'airblade/vim-gitgutter'
-
-" Plug 'vim-airline/vim-airline'
-" Plug 'vim-airline/vim-airline-themes'
 Plug 'itchyny/lightline.vim'
-
 Plug 'bronson/vim-trailing-whitespace'
-
 Plug 'junegunn/vim-easy-align'
 Plug 'vim-scripts/Align'
 Plug 'godlygeek/tabular'
-
 Plug 'vim-scripts/matchit.zip'
-
 Plug 'tommcdo/vim-exchange'
-" Plug 'terryma/vim-expand-region'
-
-" Plug 'haya14busa/incsearch.vim'
-" Plug 'osyo-manga/vim-over'
-
-" Plug 'Yggdroot/indentLine'
-
-" Plug 'tpope/vim-dispatch'
-
-" Plug 'kien/ctrlp.vim'
 Plug 'ctrlpvim/ctrlp.vim' "| Plug 'habamax/vim-ctrlp-colorscheme'
 Plug 'tacahiroy/ctrlp-funky'
 " Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
 
 Plug 'justinmk/vim-dirvish'
-
 Plug 'szw/vim-tags'
 Plug 'majutsushi/tagbar'
-
-" Plug 'Xuyuanp/nerdtree-git-plugin'
-
 Plug 'neomake/neomake'
 Plug 'lyokha/vim-xkbswitch'
-
-" Experiments {{
-Plug 'sjl/gundo.vim'
-
+Plug 'tpope/vim-endwise'
+Plug 't9md/vim-quickhl'
+Plug 'xolox/vim-easytags'
+Plug 'xolox/vim-misc'
 Plug 'editorconfig/editorconfig-vim'
 
-Plug 'tpope/vim-bundler'
-
-Plug 'tpope/vim-endwise'
-
-Plug 't9md/vim-quickhl'
-
-Plug 'tpope/vim-unimpaired'
-" }}
-
-"
-" Plug 'eagletmt/neco-ghc'
-"
-" Plug 'Shougo/unite.vim'
-
 " HINT: Delete buffers and close files in Vim without closing your windows
-Plug 'moll/vim-bbye'
 " HINT: try me if that plugin doesn't work (https://github.com/qpkorr/vim-bufkill)
+Plug 'moll/vim-bbye'
 
+" Experiments {{
+" Plug 'ruby-formatter/rufo-vim'
+Plug 'Chiel92/vim-autoformat'
+
+" :Gsearch, then :Greplace
+Plug 'yegappan/greplace'
+" Experiments }}
 call plug#end()
 " Plugs }}}
 
 " xkbswitch {{{
 " HINT: https://github.com/myshov/libxkbswitch-macosx
-" let g:XkbSwitchLib = 'liblibxkbswitch.dylibck_after_paste/Users/zudochkin/Library/Developer/Xcode/DerivedData/libxkbswitch-aevoofumcqfjnbawtustqvdywzqh/Build/Products/Debug/liblibxkbswitch.dylib'
+let g:XkbSwitchLib = '/usr/local/lib/libxkbswitch.dylib'
 let g:XkbSwitchEnabled = 1
 " }}}
 
 " Configuration {{{
-" colorscheme monokai
 colorscheme gruvbox
-" set background=light
 
 noremap <Up> <NOP>
 noremap <Down> <NOP>
@@ -161,7 +108,6 @@ set splitright             " Open new windows right of the current window.
 
 let g:deoplete#enable_at_startup = 0
 
-" set shell=zsh\ -i
 set shell=/bin/zsh
 
 set backspace=indent,eol,start
@@ -192,11 +138,6 @@ nnoremap <Leader>s :%s/\<<C-r><C-w>\>/
 " vim-bbye
 nnoremap <Leader>q :Bdelete<CR>
 
-" This will allow you to select a word within visual mode, then with the quick
-" double tap of / immediately search for the given word.
-" http://blog.salsify.com/engineering/using-vim-tmux-for-ruby-on-rails
-vnoremap // y/<C-R>"<CR>"
-
 nmap <F1> <Esc>
 
 " permanent very magick mode
@@ -215,40 +156,31 @@ syntax on
 set ruler
 
 set cindent
-set smartindent
 set smartcase
 set autoindent
 
 set hlsearch
 set incsearch   " do incremental searching
 set ignorecase
-"
+
 " " Switch wrap off for everything
 set nowrap
-"
-set showcmd   " display incomplete commands
-"
-" " Always display the status line
+
+set showcmd " display incomplete commands
+
+" Always display the status line
 set laststatus=2
 
-set dir=~/.vim/swp
-"
-" " нужно для работы макросов
 filetype plugin indent on
-"
-" " Keep more content at the bottom of the buffer
-set scrolloff=10
-"
+
+" Keep more content at the bottom of the buffer
+set scrolloff=0
+
 " " Highlight cursor line
-set cursorline
-"
+" set cursorline
+
 set history=1000
 "
-" " Thorfile, Rakefile, Vagrantfile and Gemfile are Ruby
-" au BufRead,BufNewFile {Gemfile,Rakefile,Vagrantfile,Thorfile,config.ru} set
-" ft=ruby
-" au BufRead,BufNewFile {*.html.slim} set ft=slim
-" au BufRead,BufNewFile {*.skim} set ft=slim
 au BufRead,BufNewFile {*.es6} set ft=javascript
 
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
@@ -256,45 +188,27 @@ autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 autocmd FileType json setlocal foldmethod=syntax
 autocmd FileType json normal zR
 "
-" "
-" " " md, markdown, and mk are markdown and define buffer-local preview
-" au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn} set ft=markdown
-" "
-" " " add json syntax highlighting
-" au BufNewFile,BufRead *.json set ft=javascript
-"
-" " highlight ExtraWhitespace ctermbg=red guibg=red
-" " match ExtraWhitespace /\s\+$/
-" " autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
-" " autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
-" " autocmd InsertLeave * match ExtraWhitespace /\s\+$/
-" " autocmd BufWinLeave * call clearmatches()
-"
 runtime macros/matchit.vim
 
 set wildmenu
 set wcm=<Tab>
 
 if has("gui_running")
-  " set guifont=Monaco:h15
-  " set guifont=PT\ Mono:h15
-  set guifont=Hack:h14
-  " set guifont="Fantasque Sans Mono:h14"
-  " set guifont="FantasqueSansMono:h15"
+  set macligatures
+  set guifont=Fira\ Code:h16
   set background=dark
 endif
 
 set tags=./tags;
+
+
 " Configuration }}}
 
 " Neomake {{{
 let g:neomake_ruby_enabled_makers=['mri', 'rubocop']
-autocmd FileType ruby autocmd! BufWritePost * Neomake
+" autocmd FileType ruby autocmd! BufWritePost * Neomake
 " Neomake }}}
 
-" NERDTree {{{
-map ,n  :NERDTreeToggle<CR>
-" NERDTree }}}
 
 " Ag {{{
 if executable('ag')
@@ -310,6 +224,7 @@ set grepprg=ag\ --nogroup\ --nocolor
   " ag search --ignore log --ignore vendor --ignore app/assets  --ignore tmp --column
 endif
 " Ag }}}
+
 
 " CtrlP {{{
 " let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
@@ -344,14 +259,13 @@ nnoremap ,l :CtrlPLine<cr>
 nnoremap ,f :CtrlPFunky<cr>
 " CtrlP }}}
 
-" map /  <Plug>(incsearch-forward)
-" map ?  <Plug>(incsearch-backward)
-" map g/ <Plug>(incsearch-stay)
 
-" **************************************************
-
-" nerdtree {{{
+" NERDTree {{{
 nmap <leader>l :NERDTreeToggle<CR>
+map <leader>n :NERDTreeToggle<CR>
+" show current file in NerdTree
+map <leader>f :NERDTreeFind<CR>
+
 let NERDTreeShowBookmarks=1
 let NERDTreeChDirMode=2
 let NERDTreeQuitOnOpen=0
@@ -362,15 +276,8 @@ let NERDTreeMinimalUI=1
 " Use arrows instead of + ~ chars when displaying directories
 let NERDTreeDirArrows=1
 let NERDTreeBookmarksFile= $HOME . '/.vim/.NERDTreeBookmarks'
-" nerdtree }}}
+" NERDTree }}}
 
-
-" airline {{{
-" let g:airline_left_sep = '▶'
-" let g:airline_right_sep = '◀'
-" let g:airline_theme='powerlineish'
-" let g:airline_theme='aurora'
-" airline }}}
 
 " lightline {{{
 if !has('gui_running')
@@ -401,18 +308,24 @@ nmap <Space>] <Plug>(quickhl-tag-toggle)
 map H <Plug>(operator-quickhl-manual-this-motion)
 " quickhl }}}
 
+
 " dirvish {{{
 nnoremap <silent> - :Dirvish %:p:h<cr>
-" nnoremap <silent> _ :NERDTree %:p:h<cr>
+nnoremap <silent> _ :NERDTreeFind<cr>
 let g:dirvish_hijack_netrw=0
 " dirvish }}}
-
 
 
 " easy align {{{
 " Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
 vmap <Enter> <Plug>(EasyAlign)
 " easy align }}}
+
+
+" yankstack {{{
+nmap <leader>p <Plug>yankstack_substitute_older_paste
+nmap <leader>P <Plug>yankstack_substitute_newer_paste
+" yankstack }}}
 
 
 " let g:vim_tags_project_tags_command = "{CTAGS} -R {OPTIONS} {DIRECTORY} --exclude=.git --languages=ruby --exclude=log --exclude=node_modules --exclude=gulp --exclude=public/assets 2>/dev/null"
