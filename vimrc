@@ -75,9 +75,19 @@ Plug 'Chiel92/vim-autoformat'
 
 " :Gsearch, then :Greplace
 Plug 'yegappan/greplace'
+
+" first attempt to run specs in async way
+Plug 'neomake/neomake'
+Plug 'janko-m/vim-test'
+Plug 'xolox/vim-session'
+Plug 'posva/vim-vue'
+
 " Experiments }}
 call plug#end()
 " Plugs }}}
+
+" specs
+let g:easytags_async = 1
 
 " xkbswitch {{{
 " HINT: https://github.com/myshov/libxkbswitch-macosx
@@ -207,6 +217,7 @@ set tags=./tags;
 " Neomake {{{
 let g:neomake_ruby_enabled_makers=['mri', 'rubocop']
 " autocmd FileType ruby autocmd! BufWritePost * Neomake
+autocmd BufRead,BufNewFile *.rb set foldmethod=syntax foldlevel=99
 " Neomake }}}
 
 
