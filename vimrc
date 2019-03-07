@@ -28,7 +28,7 @@ Plug 'AndrewRadev/switch.vim'
 Plug 'valloric/MatchTagAlways'
 
 " " Plugin outside ~/.vim/plugged with post-update hook
-" Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
 "
 Plug 'vim-ruby/vim-ruby'
 Plug 'tpope/vim-rails'
@@ -50,9 +50,8 @@ Plug 'vim-scripts/Align'
 Plug 'godlygeek/tabular'
 Plug 'vim-scripts/matchit.zip'
 Plug 'tommcdo/vim-exchange'
-Plug 'ctrlpvim/ctrlp.vim' "| Plug 'habamax/vim-ctrlp-colorscheme'
-Plug 'tacahiroy/ctrlp-funky'
-" Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
+" Plug 'ctrlpvim/ctrlp.vim' "| Plug 'habamax/vim-ctrlp-colorscheme'
+" Plug 'tacahiroy/ctrlp-funky'
 
 Plug 'justinmk/vim-dirvish'
 Plug 'szw/vim-tags'
@@ -69,6 +68,9 @@ Plug 'editorconfig/editorconfig-vim'
 " HINT: try me if that plugin doesn't work (https://github.com/qpkorr/vim-bufkill)
 Plug 'moll/vim-bbye'
 
+" CSV support
+Plug 'chrisbra/csv.vim'
+
 " Experiments {{
 " Plug 'ruby-formatter/rufo-vim'
 Plug 'Chiel92/vim-autoformat'
@@ -79,15 +81,22 @@ Plug 'yegappan/greplace'
 " first attempt to run specs in async way
 Plug 'neomake/neomake'
 Plug 'janko-m/vim-test'
-Plug 'xolox/vim-session'
+" Plug 'xolox/vim-session'
 Plug 'posva/vim-vue'
+
+
 
 " Experiments }}
 call plug#end()
 " Plugs }}}
 
-" specs
+" easytags {{{
+let g:easytags_events = ['BufReadPost', 'BufWritePost']
 let g:easytags_async = 1
+let g:easytags_dynamic_files = 2
+let g:easytags_resolve_links = 1
+let g:easytags_suppress_ctags_warning = 1
+" easytags {{{
 
 " xkbswitch {{{
 " HINT: https://github.com/myshov/libxkbswitch-macosx
@@ -151,12 +160,12 @@ nnoremap <Leader>q :Bdelete<CR>
 nmap <F1> <Esc>
 
 " permanent very magick mode
-nnoremap / /\v
-vnoremap / /\v
-cnoremap %s/ %smagic/
-cnoremap \>s/ \>smagic/
-nnoremap :g/ :g/\v
-nnoremap :g// :g//
+" nnoremap / /\v
+" vnoremap / /\v
+" cnoremap %s/ %smagic/
+" cnoremap \>s/ \>smagic/
+" nnoremap :g/ :g/\v
+" nnoremap :g// :g//
 
 set number
 set numberwidth=3
@@ -220,16 +229,45 @@ let g:neomake_ruby_enabled_makers=['mri', 'rubocop']
 autocmd BufRead,BufNewFile *.rb set foldmethod=syntax foldlevel=99
 " Neomake }}}
 
+" FZF {{{
+" mappings
+nnoremap ,, :Files<cr>
+nnoremap ,b :Buffers<cr>
+nnoremap ,t :Tags<cr>
+nnoremap ,l :Lines<cr>
+nnoremap ,m :Marks<cr>
+nnoremap ,c :Commands<cr>
+nnoremap ,h :Helptags<cr> " help
+" FZF }}}
+
+" CSV {{{
+let did_load_csvfiletype=1
+
+augroup filetypedetect
+  au! BufRead,BufNewFile *.csv,*.dat setfiletype csv
+augroup END
+
+" HINT:
+" Use the bang attribute, if you have a heading in the first line and you want to know the name of the column in which the cursor is:
+" :WhatColumn!
+
+" HINT:
+" You can also transform your csv data into a visual table, using the :CSVTabularize or :CSVTable:
+" :CSVTabularize
+
+" HINT:
+" HiColumn will highlight the column on which the cursor is.
+" :HiColumn
+
+" CSV }}}
 
 " Ag {{{
 if executable('ag')
   " Use Ag over Grep
-  set grepprg=ag\ --nogroup\ --nocolor
-
+  " set grepprg=ag\ --nogroup\ --nocolor
   " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag %s -l --hidden --nocolor -g ""'
+  " let g:ctrlp_user_command = 'ag %s -l --hidden --nocolor -g ""'
   " let g:ctrlp_user_command='ag %s -l --nocolor -g ""'
-set grepprg=ag\ --nogroup\ --nocolor
 
   " TODO replace ag command if rails app
   " ag search --ignore log --ignore vendor --ignore app/assets  --ignore tmp --column
@@ -249,33 +287,32 @@ endif
 " let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
 
 " let g:ctrlp_user_command='ag %s -l -i --nocolor -g ""'
-let g:ctrlp_use_caching=0
+" let g:ctrlp_use_caching=0
 
 " let g:ctrlp_map = '<leader>p'
-let g:ctrlp_cmd = 'CtrlPMixed'
+" let g:ctrlp_cmd = 'CtrlPMixed'
 " let g:ctrlp_extensions = ['tag' 'dir']
-let g:ctrlp_working_path_mode = 'ra'
-let g:ctrlp_max_height = 25
+" let g:ctrlp_working_path_mode = 'ra'
+" let g:ctrlp_max_height = 25
 
 " let g:ctrlp_extensions = ['funky', 'line', 'buffertag']
-let g:ctrlp_extensions = ['dir', 'mixed']
-let g:ctrlp_working_path_mode = 0
-
+" let g:ctrlp_extensions = ['dir', 'mixed']
+" let g:ctrlp_working_path_mode = 0
 " mappings
-nnoremap ,, :CtrlP<cr>
-nnoremap ,p :CtrlPMixed<cr>
-nnoremap ,b :CtrlPBuffer<cr>
-nnoremap ,t :CtrlPTag<cr>
-nnoremap ,l :CtrlPLine<cr>
-nnoremap ,f :CtrlPFunky<cr>
+" nnoremap ,, :CtrlP<cr>
+" nnoremap ,p :CtrlPMixed<cr>
+" nnoremap ,b :CtrlPBuffer<cr>
+" nnoremap ,t :CtrlPTag<cr>
+" nnoremap ,l :CtrlPLine<cr>
+" nnoremap ,f :CtrlPFunky<cr>
+
 " CtrlP }}}
 
 
 " NERDTree {{{
-nmap <leader>l :NERDTreeToggle<CR>
-map <leader>n :NERDTreeToggle<CR>
+nmap <leader>n :NERDTreeToggle<CR>
 " show current file in NerdTree
-map <leader>f :NERDTreeFind<CR>
+nnoremap <silent> _ :NERDTreeFind<cr>
 
 let NERDTreeShowBookmarks=1
 let NERDTreeChDirMode=2
@@ -322,7 +359,6 @@ map H <Plug>(operator-quickhl-manual-this-motion)
 
 " dirvish {{{
 nnoremap <silent> - :Dirvish %:p:h<cr>
-nnoremap <silent> _ :NERDTreeFind<cr>
 let g:dirvish_hijack_netrw=0
 " dirvish }}}
 
