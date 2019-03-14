@@ -29,6 +29,10 @@ Plug 'valloric/MatchTagAlways'
 
 " " Plugin outside ~/.vim/plugged with post-update hook
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
+Plug 'junegunn/fzf.vim'
+
+Plug 'tpope/vim-fugitive'
+
 "
 Plug 'vim-ruby/vim-ruby'
 Plug 'tpope/vim-rails'
