@@ -69,7 +69,6 @@ Plug 'xolox/vim-misc'
 Plug 'editorconfig/editorconfig-vim'
 
 " HINT: Delete buffers and close files in Vim without closing your windows
-" HINT: try me if that plugin doesn't work (https://github.com/qpkorr/vim-bufkill)
 Plug 'moll/vim-bbye'
 
 " CSV support
@@ -241,7 +240,7 @@ nnoremap ,t :Tags<cr>
 nnoremap ,l :Lines<cr>
 nnoremap ,m :Marks<cr>
 nnoremap ,c :Commands<cr>
-nnoremap ,h :Helptags<cr> " help
+" nnoremap ,h :Helptags<cr> " help
 " FZF }}}
 
 " CSV {{{
