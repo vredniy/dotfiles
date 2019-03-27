@@ -33,6 +33,13 @@ Plug 'junegunn/fzf.vim'
 
 Plug 'tpope/vim-fugitive'
 
+Plug 'yegappan/mru'
+
+" post install (yarn install | npm install) then load plugin only for editing supported files
+Plug 'prettier/vim-prettier', {
+  \ 'do': 'yarn install',
+  \ 'for': ['javascript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html', 'ruby', 'go'] }
+
 "
 Plug 'vim-ruby/vim-ruby'
 Plug 'tpope/vim-rails'
@@ -47,7 +54,8 @@ Plug 'rking/ag.vim'
 Plug 'tpope/vim-surround'
 Plug 'ervandew/supertab'
 Plug 'Raimondi/delimitMate'
-Plug 'itchyny/lightline.vim'
+" Plug 'itchyny/lightline.vim'
+Plug 'vim-airline/vim-airline'
 Plug 'bronson/vim-trailing-whitespace'
 Plug 'junegunn/vim-easy-align'
 Plug 'vim-scripts/Align'
@@ -84,14 +92,16 @@ Plug 'yegappan/greplace'
 " first attempt to run specs in async way
 Plug 'neomake/neomake'
 Plug 'janko-m/vim-test'
-" Plug 'xolox/vim-session'
 Plug 'posva/vim-vue'
-
 
 
 " Experiments }}
 call plug#end()
 " Plugs }}}
+
+let g:airline_extensions = []
+let g:airline_highlighting_cache = 1
+
 
 " easytags {{{
 let g:easytags_events = ['BufReadPost', 'BufWritePost']
@@ -114,6 +124,10 @@ noremap <Up> <NOP>
 noremap <Down> <NOP>
 noremap <Left> <NOP>
 noremap <Right> <NOP>
+
+" Move cursor by display lines when wrapping
+onoremap <silent> j gj
+onoremap <silent> k gk
 
 set undofile
 set dir=~/.vim/swp//
@@ -156,9 +170,6 @@ endif
 
 map <Leader>h :noh<CR>
 nnoremap <Leader>s :%s/\<<C-r><C-w>\>/
-
-" vim-bbye
-nnoremap <Leader>q :Bdelete<CR>
 
 nmap <F1> <Esc>
 
@@ -213,7 +224,12 @@ autocmd FileType json normal zR
 runtime macros/matchit.vim
 
 set wildmenu
+set wildmode=list:full " Complete longest common string, then each full match
+" By default, when pressing left/right cursor keys, Vim will not move to the previous/next line after reaching first/last character in the line
+set whichwrap+=h,l
 set wcm=<Tab>
+set fileencoding=utf-8 " Encoding when written to file
+set fileformat=unix " Line endings
 
 if has("gui_running")
   set macligatures
@@ -229,8 +245,14 @@ set tags=./tags;
 " Neomake {{{
 let g:neomake_ruby_enabled_makers=['mri', 'rubocop']
 " autocmd FileType ruby autocmd! BufWritePost * Neomake
-autocmd BufRead,BufNewFile *.rb set foldmethod=syntax foldlevel=99
+" autocmd BufRead,BufNewFile *.rb set foldmethod=syntax foldlevel=99
 " Neomake }}}
+
+
+" vim-bbye {{{
+nnoremap <Leader>q :Bdelete<CR>
+" vim-bbye }}}
+
 
 " FZF {{{
 " mappings
@@ -238,10 +260,16 @@ nnoremap ,, :Files<cr>
 nnoremap ,b :Buffers<cr>
 nnoremap ,t :Tags<cr>
 nnoremap ,l :Lines<cr>
-nnoremap ,m :Marks<cr>
+" nnoremap ,m :Marks<cr>
 nnoremap ,c :Commands<cr>
 " nnoremap ,h :Helptags<cr> " help
 " FZF }}}
+
+
+" MRU {{{
+nnoremap ,m :MRU<cr>
+" MRU }}}
+
 
 " CSV {{{
 let did_load_csvfiletype=1
@@ -264,53 +292,6 @@ augroup END
 
 " CSV }}}
 
-" Ag {{{
-if executable('ag')
-  " Use Ag over Grep
-  " set grepprg=ag\ --nogroup\ --nocolor
-  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  " let g:ctrlp_user_command = 'ag %s -l --hidden --nocolor -g ""'
-  " let g:ctrlp_user_command='ag %s -l --nocolor -g ""'
-
-  " TODO replace ag command if rails app
-  " ag search --ignore log --ignore vendor --ignore app/assets  --ignore tmp --column
-endif
-" Ag }}}
-
-
-" CtrlP {{{
-" let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
-" let g:ctrlp_custom_ignore = {
-"   \ 'dir':  '\v[\/]\.(git|hg|svn)$',
-"   \ 'file': '\v\.(exe|so|dll)$',
-"   \ 'link': 'some_bad_symbolic_links',
-"   \ }
-"
-" set wildignore+=*/.git/*,*/.hg/*,*/.svn/*
-" let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
-
-" let g:ctrlp_user_command='ag %s -l -i --nocolor -g ""'
-" let g:ctrlp_use_caching=0
-
-" let g:ctrlp_map = '<leader>p'
-" let g:ctrlp_cmd = 'CtrlPMixed'
-" let g:ctrlp_extensions = ['tag' 'dir']
-" let g:ctrlp_working_path_mode = 'ra'
-" let g:ctrlp_max_height = 25
-
-" let g:ctrlp_extensions = ['funky', 'line', 'buffertag']
-" let g:ctrlp_extensions = ['dir', 'mixed']
-" let g:ctrlp_working_path_mode = 0
-" mappings
-" nnoremap ,, :CtrlP<cr>
-" nnoremap ,p :CtrlPMixed<cr>
-" nnoremap ,b :CtrlPBuffer<cr>
-" nnoremap ,t :CtrlPTag<cr>
-" nnoremap ,l :CtrlPLine<cr>
-" nnoremap ,f :CtrlPFunky<cr>
-
-" CtrlP }}}
-
 
 " NERDTree {{{
 nmap <leader>n :NERDTreeToggle<CR>
@@ -328,17 +309,6 @@ let NERDTreeMinimalUI=1
 let NERDTreeDirArrows=1
 let NERDTreeBookmarksFile= $HOME . '/.vim/.NERDTreeBookmarks'
 " NERDTree }}}
-
-
-" lightline {{{
-if !has('gui_running')
-  set t_Co=256
-endif
-
-let g:lightline = {
-      \ 'colorscheme': 'wombat',
-      \ }
-" lightline }}}
 
 
 " quickhl {{{

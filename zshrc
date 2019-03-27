@@ -1,6 +1,8 @@
 # Path to your oh-my-zsh installation.
 export ZSH=/Users/zudochkin/.oh-my-zsh
 
+MAILCHECK=0
+
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
@@ -58,12 +60,12 @@ ZSH_THEME="eastwood"
 # quick-look  quick Look a specified file
 # man-preview open a specified man page in Preview
 # trash move a specified file to the Trash
-plugins=(git brew git-extras osx brew-cask tmux)
+plugins=(git brew git-extras osx brew-cask)
 
 # User configuration
 
 PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Applications/Postgres.app/Contents/Versions/9.6/bin"
-export PATH=$PATH:$(go env GOPATH)/bin
+export PATH
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
@@ -111,8 +113,8 @@ export PS1='$(git_custom_status)%{$fg[cyan]%}[%~% ]%{$reset_color%}%B$%b 😈  '
 # replace find with ag command
 export FZF_DEFAULT_COMMAND='ag -l -g ""'
 
-# export GOPATH=$HOME/go
-# export PATH=$PATH:$GOPATH/bin
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOPATH/bin
 
 # rbenv initialization
 eval "$(rbenv init -)"
@@ -136,22 +138,38 @@ source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 export ERL_AFLAGS="-kernel shell_history enabled"
 
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+
+
+export WORKON_HOME=~/.ve
+export PROJECT_HOME=~/projects/python
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
-if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
 
-# set where virutal environments will live
-export WORKON_HOME=$HOME/.virtualenvs
-# ensure all new environments are isolated from the site-packages directory
-export VIRTUALENVWRAPPER_VIRTUALENV_ARGS='--no-site-packages'
-# use the same directory for virtualenvs as virtualenvwrapper
-export PIP_VIRTUALENV_BASE=$WORKON_HOME
-# makes pip detect an active virtualenv and install to it
-export PIP_RESPECT_VIRTUALENV=true
-if [[ -r /usr/local/bin/virtualenvwrapper.sh ]]; then
-  source /usr/local/bin/virtualenvwrapper.sh
-else
-  echo "WARNING: Can't find virtualenvwrapper.sh"
-fi
 
-alias ssh="/Users/zudochkin/dotfiles/color-iterm-ssh.sh"
+# eval "$(pyenv init -)"
+# eval "$(pyenv virtualenv-init -)"
+# if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
+#
+# # set where virutal environments will live
+# export WORKON_HOME=$HOME/.virtualenvs
+# # ensure all new environments are isolated from the site-packages directory
+# export VIRTUALENVWRAPPER_VIRTUALENV_ARGS='--no-site-packages'
+# # use the same directory for virtualenvs as virtualenvwrapper
+# export PIP_VIRTUALENV_BASE=$WORKON_HOME
+# # makes pip detect an active virtualenv and install to it
+# export PIP_RESPECT_VIRTUALENV=true
+# if [[ -r /usr/local/bin/virtualenvwrapper.sh ]]; then
+#   source /usr/local/bin/virtualenvwrapper.sh
+# else
+#   echo "WARNING: Can't find virtualenvwrapper.sh"
+# fi
+#
+# alias ssh="/Users/zudochkin/dotfiles/color-iterm-ssh.sh"
+export PATH="/usr/local/opt/postgresql@9.6/bin:$PATH"
+export GOENV_ROOT="$HOME/.goenv"
+export PATH="$GOENV_ROOT/bin:$PATH"
+eval "$(goenv init -)"
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"

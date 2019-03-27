@@ -2,6 +2,7 @@ alias m="mvim ."
 
 alias r=rails
 alias be="bundle exec"
+alias all="be rspec --format=doc --format=NcFirstFail" # run all specs and notify at the first failure
 #
 # alias speedtest='curl -o /dev/null http://speedtest.wdc01.softlayer.com/downloads/test10.zip'
 #
@@ -35,3 +36,5 @@ alias v="vimr . -n"
 
 alias zshrc='$EDITOR ~/.zshrc'
 alias t='tail -f'
+
+alias dc='docker-compose run --entrypoint /bin/bash --rm $1'

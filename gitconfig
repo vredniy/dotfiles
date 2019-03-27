@@ -1,12 +1,12 @@
-# This is Git's per-user configuration file.
 [core]
-# Please adapt and uncomment the following lines:
 	user = Dmitry Zudochkin
 	email = dnd.pliz@gmail.com
-	excludesfile = /Users/zudochkin/.gitignore_global
+	excludesfile = /Users/zudochkin/.gitignore
+
 [user]
 	name = Dmitry Zudochkin
 	email = dnd.pliz@gmail.com
+
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
