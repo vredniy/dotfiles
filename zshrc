@@ -60,7 +60,7 @@ ZSH_THEME="eastwood"
 # quick-look  quick Look a specified file
 # man-preview open a specified man page in Preview
 # trash move a specified file to the Trash
-plugins=(git brew git-extras osx brew-cask)
+plugins=(git brew git-extras osx history-substring-search)
 
 # User configuration
 
@@ -85,7 +85,8 @@ fi
 # the older command is removed from the list (even if it is not the previous event).
 setopt histignorealldups
 
-source /usr/local/share/zsh-history-substring-search/zsh-history-substring-search.zsh
+# source /usr/local/share/zsh-history-substring-search/zsh-history-substring-search.zsh
+# source /usr/local/share/zsh-history-substring-search/zsh-history-substring-search.zsh
 
 zmodload zsh/terminfo
 bindkey "$terminfo[kcuu1]" history-substring-search-up
@@ -116,12 +117,16 @@ export FZF_DEFAULT_COMMAND='ag -l -g ""'
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
 
+
+export PATH=$HOME/.rbenv/bin:$PATH
 # rbenv initialization
-eval "$(rbenv init -)"
+# eval "$(rbenv init -)"
+export RBENV_ROOT=$HOME/.rbenv
+export PATH=$RBENV_ROOT/shims:/versions:$PATH
 # source $HOME/.zsh-fuzzy-match/fuzzy-match.zsh
 
 # Load zsh-syntax-highlighting.
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Load zsh-autosuggestions.
@@ -134,6 +139,7 @@ source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # zle -N zle-line-init
 
 
+export PATH="/opt/homebrew/bin:$PATH"
 [[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
 
 export ERL_AFLAGS="-kernel shell_history enabled"
@@ -142,10 +148,10 @@ export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 
 
-export WORKON_HOME=~/.ve
-export PROJECT_HOME=~/projects/python
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
+# export WORKON_HOME=~/.ve
+# export PROJECT_HOME=~/projects/python
+# eval "$(pyenv init -)"
+# eval "$(pyenv virtualenv-init -)"
 
 
 # eval "$(pyenv init -)"
@@ -167,9 +173,10 @@ eval "$(pyenv virtualenv-init -)"
 # fi
 #
 # alias ssh="/Users/zudochkin/dotfiles/color-iterm-ssh.sh"
-export PATH="/usr/local/opt/postgresql@9.6/bin:$PATH"
-export GOENV_ROOT="$HOME/.goenv"
-export PATH="$GOENV_ROOT/bin:$PATH"
-eval "$(goenv init -)"
+#export PATH="/usr/local/opt/postgresql@9.6/bin:$PATH"
+#export GOENV_ROOT="$HOME/.goenv"
+#export PATH="$GOENV_ROOT/bin:$PATH"
+#eval "$(goenv init -)"
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+export PATH="/Users/zudochkin/.rbenv/shims:$PATH"
